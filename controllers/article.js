@@ -138,7 +138,7 @@ module.exports = {
                     if (category.articles.indexOf(article.id) === -1) {
                         category.articles.push(article.id);
                     }
-                })
+                });
 
                 article.save((err) => {
                     if (err) {
