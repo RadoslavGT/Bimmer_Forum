@@ -21,7 +21,8 @@ module.exports = (app) => {
 
     app.get('/article/details/:id', articleController.details);
 
-
+    app.get('/article/edit/:id', articleController.editGet);
+    app.post('/article/edit/:id', articleController.editPost);
 
     app.get('/article/delete/:id', articleController.deleteGet);
     app.post('/article/delete/:id', articleController.deletePost);
@@ -29,17 +30,17 @@ module.exports = (app) => {
     app.get('/tag/:name', tagController.listArticleByTag);
 
     app.use((req, res, next) => {
-      if (req.isAuthenticated()) {
-          req.user.isInRole('Admin').then(isAdmin => {
-              if (isAdmin) {
-                  next();
-              } else {
-                  res.redirect('/');
-              }
-          })
-      }  else {
-          res.redirect('/user/login');
-      }
+        if (req.isAuthenticated()) {
+            req.user.isInRole('Admin').then(isAdmin => {
+                if (isAdmin) {
+                    next();
+                } else {
+                    res.redirect('/');
+                }
+            })
+        } else {
+            res.redirect('/user/login');
+        }
     });
 
     app.get('/admin/user/all', adminController.user.all);

@@ -312,7 +312,7 @@ th {
     }
 
     p,
-    h2,
+
     h3 {
         orphans: 3;
         widows: 3;
@@ -1440,7 +1440,7 @@ body {
     font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 15px;
     line-height: 1.42857143;
-    color: #2c3e50;
+    color: #d4dce2;
     background-color: #ffffff;
 }
 
@@ -1454,13 +1454,13 @@ textarea {
 }
 
 a {
-    color: #023051;
+    color: #02a0dd;
     text-decoration: none;
 }
 
 a:hover,
 a:focus {
-    color: #023051;
+    color: #02a0dd;
     text-decoration: underline;
 }
 
@@ -3195,7 +3195,7 @@ legend {
     margin-bottom: 21px;
     font-size: 22.5px;
     line-height: inherit;
-    color: #2c3e50;
+    color: #02a0dd;
     border: 0;
     border-bottom: 1px solid transparent;
 }
@@ -8254,12 +8254,12 @@ button.close {
 
 .text-primary,
 .text-primary:hover {
-    color: #2c3e50;
+    color: #02a0dd;
 }
 
 .text-success,
 .text-success:hover {
-    color: #023051;
+    color: #02a0dd;
 }
 
 .text-danger,
@@ -8541,13 +8541,20 @@ article .author {
     display: block;
     font-size: 100%;
     line-height: 1.42857143;
-    color: #b4bcc2;
+    color: #02a0dd;
 }
 
 article .author {
     content: '\2014 \00A0';
 }
 
+body {
+    background-image: url("../images/bmw_wheel.jpg");
+    background-size: cover;
+}
 
-
-
+ .well {
+    background: url("../images/M motorsport.jpg");
+    background-size: 100%;
+     color: #FFFFFF;
+}
