@@ -65,6 +65,10 @@ module.exports = {
         });
     },
 
+    answer: (req, res) => {
+        res.render('article/answer')
+    },
+
     editGet: (req, res) => {
         let id = req.params.id;
 
