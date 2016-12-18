@@ -6,7 +6,8 @@ let articleSchema = mongoose.Schema({
     author: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User'},
     category: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Category'},
     tags: [{type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Tag'}],
-    date: {type: Date, default: Date.now()}
+    date: {type: Date, default: Date.now()},
+    comment: {type: String, default: '', trim: true}
 });
 
 articleSchema.method({

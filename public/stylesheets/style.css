@@ -1440,7 +1440,7 @@ body {
     font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 15px;
     line-height: 1.42857143;
-    color: #d4dce2;
+    color: #ffffff;
     background-color: #ffffff;
 }
 
@@ -8541,7 +8541,7 @@ article .author {
     display: block;
     font-size: 100%;
     line-height: 1.42857143;
-    color: #02a0dd;
+    color: #afb3b9;
 }
 
 article .author {
@@ -8549,12 +8549,12 @@ article .author {
 }
 
 body {
-    background-image: url("../images/bmw_wheel.jpg");
+    background-image: url("../images/background.jpg");
     background-size: cover;
 }
 
  .well {
-    background: url("../images/M motorsport.jpg");
+    background: url("../images/MBackground.jpg");
     background-size: 100%;
      color: #FFFFFF;
 }
