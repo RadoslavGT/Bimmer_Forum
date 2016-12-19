@@ -1,5 +1,7 @@
 const Article = require('mongoose').model('Article');
 const Category = require('mongoose').model('Category');
+const User = require('mongoose').model('User');
+const Comment = require('mongoose').model('Comment');
 const initializeTags = require('./../models/Tag').initializeTags;
 
 module.exports = {
@@ -40,7 +42,9 @@ module.exports = {
             // Get the tags form the input, split it by space or semicolon,
             // then remove empty entries.
 
-            let tagNames = articleArgs.tagNames.split(/\s+|,/).filter(tag => {return tag});
+            let tagNames = articleArgs.tagNames.split(/\s+|,/).filter(tag => {
+                return tag
+            });
             initializeTags(tagNames, article.id);
 
             article.prepareInsert();
@@ -52,21 +56,32 @@ module.exports = {
         let id = req.params.id;
 
         Article.findById(id).populate('author tags').then(article => {
-            if (!req.user) {
-                res.render('article/details', {article: article, isUserAuthorized: false});
-                return;
-            }
 
-            req.user.isInRole('Admin').then(isAdmin => {
-                let isUserAuthorized = isAdmin || req.user.isAuthor(article);
+            Comment.find({article: article.id}).populate('author').then(comment => {
 
-                res.render('article/details', {article: article, isUserAuthorized: isUserAuthorized});
+                User.findOne({_id: comment.author}).then(user => {
+                    if (!req.user) {
+                        res.render('article/details', {
+                            article: article,
+                            comments: comment,
+                            author: user,
+                            isUserAuthorized: false
+                        });
+                        return;
+                    }
+                    req.user.isInRole('Admin').then(isAdmin => {
+                        let isUserAuthorized = isAdmin || req.user.isAuthor(article);
+
+                        res.render('article/details', {
+                            article: article,
+                            comments: comment,
+                            author: user,
+                            isUserAuthorized: isUserAuthorized
+                        });
+                    });
+                });
             });
         });
-    },
-
-    answer: (req, res) => {
-        res.render('article/answer')
     },
 
     editGet: (req, res) => {
@@ -90,7 +105,9 @@ module.exports = {
                 Category.find({}).then(categories => {
                     article.categories = categories;
 
-                    article.tagNames = article.tags.map(tag => {return tag.name});
+                    article.tagNames = article.tags.map(tag => {
+                        return tag.name
+                    });
                     res.render('article/edit', article)
                 });
             });
@@ -122,7 +139,9 @@ module.exports = {
                 article.title = articleArgs.title;
                 article.content = articleArgs.content;
 
-                let newTagNames = articleArgs.tags.split(/\s+|,/).filter(tag => {return tag});
+                let newTagNames = articleArgs.tags.split(/\s+|,/).filter(tag => {
+                    return tag
+                });
 
                 // Get me the old article's tags which are not re-entered.
 
@@ -180,7 +199,9 @@ module.exports = {
                     return;
                 }
 
-                article.tagNames = article.tags.map(tag => {return tag.name});
+                article.tagNames = article.tags.map(tag => {
+                    return tag.name
+                });
                 res.render('article/delete', article)
             });
         });

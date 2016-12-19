@@ -102,6 +102,40 @@ module.exports = {
     logout: (req, res) => {
         req.logOut();
         res.redirect('/');
+    },
+
+    detailsGet: (req, res) => {
+        res.render('user/details');
+    },
+    detailsPost: (req, res) => {
+        let detailsArgs = req.body;
+        let id = req.user.id;
+
+        User.findOne({_id: id}).then(user => {
+            let errorMsg = '';
+            if (detailsArgs.password !== detailsArgs.repeatedPassword) {
+                errorMsg = 'Passwords do not match!'
+            }
+
+            if (errorMsg) {
+                detailsArgs.error = errorMsg;
+                res.render('user/details', detailsArgs)
+            } else {
+
+                if (detailsArgs.password) {
+                    let salt = encryption.generateSalt();
+                    let passwordHash = encryption.hashPassword(detailsArgs.password, salt);
+                    user.passwordHash = passwordHash;
+                    user.salt = salt;
+                }
+                if (detailsArgs.fullName) {
+                    user.fullName = detailsArgs.fullName;
+                }
+
+                user.save();
+                res.redirect('/');
+            }
+        })
     }
 };
 

@@ -312,7 +312,6 @@ th {
     }
 
     p,
-
     h3 {
         orphans: 3;
         widows: 3;
@@ -2989,11 +2988,11 @@ th {
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
-    background-color: #f9f9f9;
+    background-color: #8e9298;
 }
 
 .table-hover > tbody > tr:hover {
-    background-color: #ecf0f1;
+    background-color: #64686e;
 }
 
 table col[class*="col-"] {
@@ -3256,8 +3255,8 @@ output {
     padding: 10px 15px;
     font-size: 15px;
     line-height: 1.42857143;
-    color: #2c3e50;
-    background-color: #ffffff;
+    color: #ffffff;
+    background-color: #999da3;
     background-image: none;
     border: 1px solid #dce4ec;
     border-radius: 4px;
@@ -3269,7 +3268,7 @@ output {
 }
 
 .form-control:focus {
-    border-color: #2c3e50;
+    border-color: #000000;
     outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(44, 62, 80, 0.6);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(44, 62, 80, 0.6);
@@ -8553,8 +8552,27 @@ body {
     background-size: cover;
 }
 
- .well {
+.well {
     background: url("../images/MBackground.jpg");
     background-size: 100%;
-     color: #FFFFFF;
+    color: #FFFFFF;
+}
+
+.comment {
+    text-shadow: 2px 2px black;
+    padding: 10px;
+    padding-bottom: 50px;
+    margin-top: 10px;
+}
+
+#comments {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: transparent;
+    max-width: none;
+    width: 85%;
+    resize: none;
+    overflow: auto;
 }

@@ -6,8 +6,8 @@ let articleSchema = mongoose.Schema({
     author: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User'},
     category: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Category'},
     tags: [{type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Tag'}],
-    date: {type: Date, default: Date.now()},
-    comment: {type: String, default: '', trim: true}
+    comments: [{type: mongoose.Schema.Types.ObjectId, ref:'Comment'}],
+    date: {type: Date, default: Date.now()}
 });
 
 articleSchema.method({
@@ -28,7 +28,7 @@ articleSchema.method({
         });
 
         let Tag = mongoose.model('Tag');
-        for (let tagId of this.tags) {
+        for (let tagId of this.tags){
             Tag.findById(tagId).then(tag => {
                 if (tag) {
                     tag.articles.push(this.id);

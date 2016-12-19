@@ -8,9 +8,6 @@
                 <p>
                     {{article.content}}
                 </p>
-                <button class="btn btn-xs">
-                    <a href="/article/answer/">Answer &raquo;</a>
-                </button>
                 <small class="author">
                     {{article.author.fullName}}
                 </small>
@@ -32,7 +29,35 @@
                         {{/if}}
                         <a class="btn btn-default btn-xs" href="/">Back &raquo;</a>
                     </div>
+
+                    {{#if user}}
+                        <div class="col-md-12">
+                            <article class="comment">
+                                <form class="form-horizontal" method="POST" action="/article/details/{{article.id}}">
+                                    <fieldset>
+                                    <textarea class="form-control" id="comments" rows="2" name="comment"
+                                              required></textarea>
+                                        <button type="submit" class="btn btn-default pull-right">Add Comment</button>
+                                    </fieldset>
+                                </form>
+                            </article>
+                        </div>
+                    {{/if}}
+
+                    {{#each comments }}
+                        <div class="col-md-12">
+                            <article class="comment">
+
+                                <p>{{ this.content }}</p>
+
+                                <p class="pull-left">by {{author.fullName}}</p>
+
+                            </article>
+                        </div>
+                    {{/each}}
+
                 </footer>
+
             </article>
         </div>
     </div>

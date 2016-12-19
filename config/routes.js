@@ -3,6 +3,7 @@ const homeController = require('./../controllers/home');
 const adminController = require('./../controllers/admin/admin');
 const articleController = require('./../controllers/article');
 const tagController = require('./../controllers/tag');
+const commentController = require('./../controllers/comment')
 
 module.exports = (app) => {
     app.get('/', homeController.index);
@@ -14,6 +15,9 @@ module.exports = (app) => {
     app.get('/user/login', userController.loginGet);
     app.post('/user/login', userController.loginPost);
 
+    app.get('/user/details', userController.detailsGet);
+    app.post('/user/details', userController.detailsPost);
+
     app.get('/user/logout', userController.logout);
 
     app.get('/article/create', articleController.createGet);
@@ -21,7 +25,7 @@ module.exports = (app) => {
 
     app.get('/article/details/:id', articleController.details);
 
-    app.get('/article/answer', articleController.answer)
+    app.post('/article/details/:id', commentController.addComment);
 
     app.get('/article/edit/:id', articleController.editGet);
     app.post('/article/edit/:id', articleController.editPost);
